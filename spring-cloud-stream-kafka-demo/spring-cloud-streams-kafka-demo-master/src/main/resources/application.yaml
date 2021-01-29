@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    stream:
+      kafka:
+         bindings:
+            greetings-in:
+              consumer:
+                autoCommitOffset: false
+                autoCommitOnError: true # by default it it same as enableDlq
+                configuration:
+                  max.poll.interval.ms: 5000
+      bindings:
+        greetings-in:
+          destination: greetings
+          contentType: application/json
+        greetings-out:
+          destination: greetings
+          contentType: application/json
+
+          binder:
+            brokers: localhost:9092
